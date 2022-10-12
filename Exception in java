@@ -1,0 +1,42 @@
+package com.company;
+
+class exceptioncatch
+{
+
+    private double radius;
+    int count=0;
+
+    public exceptioncatch()
+    {
+        this(1.0);
+    }
+
+    public void setRadius(double b)
+    {
+        if(b<0)
+        {
+
+            radius=b;
+        }
+
+        throw new IllegalArgumentException("this is not correct radius plasase enter the valid radius");
+
+    }
+    public exceptioncatch(double rad)
+    {
+        setRadius(rad);
+        count++;
+    }
+
+
+}
+
+public class exception {
+    public static void main(String args[])
+    {
+
+        exceptioncatch p1=new exceptioncatch(10.5);
+        exceptioncatch c1=new exceptioncatch(-10.5);
+
+    }
+}
