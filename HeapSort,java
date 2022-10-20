@@ -1,0 +1,57 @@
+
+import java.util.Scanner;
+
+public class HeapSort {
+
+    public static void main(String args[]) {
+        Scanner sc = new Scanner(System.in);
+        int size;
+        int a[];
+        System.out.println("Enter a size of an array : ");
+        size = sc.nextInt();
+        a = new int[size];
+        for (int i = 0; i < size; i++) {
+            System.out.println("Enter " + (i + 1) + " of an array : ");
+            a[i] = sc.nextInt();
+        }
+        HSort(a);
+        System.out.println("Sorted array : ");
+        for (int i = 0; i < size; i++) {
+            System.out.println(a[i]);
+        }
+    }
+    public static void MAX_HEAPIFY(int[] a,int n,int i){
+        int largest,temp;
+        int l=(2*i)+1,r=(2*i)+2;
+        if(l<n && a[l]>a[i]){
+            largest=l;
+        }
+        else{
+            largest=i;
+        }
+        if(r<n && a[r]>a[largest]){
+            largest=r;
+        }
+        if(largest!=i){
+            temp=a[i];
+            a[i]=a[largest];
+            a[largest]=temp;
+            MAX_HEAPIFY(a,n,largest);
+        }
+    }
+    public static void BUILD_MAXHEAP(int[]a){
+        int n=a.length;
+        for(int i=a.length/2;i>=0;i--){
+            MAX_HEAPIFY(a,n,i);
+        }
+    }
+    public static void HSort(int[] a){
+        BUILD_MAXHEAP(a);
+        for(int i=a.length-1;i>0;i--){
+            int temp=a[0];
+            a[0]=a[i];
+            a[i]=temp;
+            MAX_HEAPIFY(a,i,0);
+        }
+    }
+}
